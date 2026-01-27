@@ -7,7 +7,9 @@ use App\Models\Raffle;
 use Livewire\Component;
 
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Collection;
 use Illuminate\Validation\Rule;
+use Livewire\Attributes\Computed;
 
 class RaffleApplication extends Component
 {
@@ -44,5 +46,12 @@ class RaffleApplication extends Component
                 Rule::unique('applicants', 'email')->where('raffle_id', $this->raffle->id),
             ]
         ];
+    }
+
+    #[Computed]
+    public function participants(): Collection
+    {
+        return $this->raffle->applicants
+            ->map(fn($applicant) => preg_replace('/(?<=.{2}).(?=.*@)/u', '*', $applicant->email));
     }
 }

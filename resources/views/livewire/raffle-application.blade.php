@@ -15,4 +15,14 @@
             <x-ui.button type="submit" class="mt-4">Submit</x-ui.button>
         </form>
     @endif
+    <br/>
+
+    <div class="border border-gray-200 rounded-lg p-4">
+        <h3 class="font-bold">Participants</h3>
+        <ul>
+            @foreach ($this->participants as $applicant)
+                <li>{{ $applicant }}</li>
+            @endforeach
+        </ul>
+    </div>
 </div>
