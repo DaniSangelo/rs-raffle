@@ -25,4 +25,11 @@
             @endforeach
         </ul>
     </div>
+
+    <br/>
+
+    <button wire:click="getWinner" class="px-4 py-2 bg-blue-500 text-white rounded-lg">Draw winner</button>
+    @if ($winner)
+        <p>Winner: <span class="font-bold">{{ $winner }}</span></p>
+    @endif
 </div>
