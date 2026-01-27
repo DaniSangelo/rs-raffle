@@ -1,7 +1,7 @@
 <?php
 
+use App\Livewire\RaffleApplication;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', RaffleApplication::class);
