@@ -1,5 +1,5 @@
 <div>
-    <h1 class="text-2xl font-bold">{{ $raffle->name }}</h1>
+    <h1 class="text-2xl font-bold">Raffle app: {{ $raffle->name }}</h1>
     @if ($success)
         <div class="flex flex-col items-center justify-center p-4 bg-green-100 border rounded-lg border-green-300">
             <h1 class="text-2xl font-bold">Thank you for your submisstion</h1>
@@ -17,8 +17,8 @@
     @endif
     <br/>
 
-    <div class="border border-gray-200 rounded-lg p-4">
-        <h3 class="font-bold">Participants</h3>
+    <div class="border border-gray-200 rounded-lg p-4 dark:border-gray-800">
+        <h3 class="text-lg font-medium text-gray-800 mb-4 dark:text-gray-300">Participants</h3>
         <ul>
             @foreach ($this->participants as $applicant)
                 <li>{{ $applicant }}</li>
