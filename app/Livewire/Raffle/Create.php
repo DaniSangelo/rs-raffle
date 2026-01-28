@@ -5,11 +5,14 @@ namespace App\Livewire\Raffle;
 use App\Models\Raffle;
 use Illuminate\View\View;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 class Create extends Component
 {
     public bool $modal = false;
+
+    #[Validate(['required', 'string', 'min:5', 'max:255', 'unique:raffles,name'])]
     public string $name = '';
 
     #[On('raffle::create')]
@@ -25,6 +28,7 @@ class Create extends Component
 
     public function handle(): void
     {
+        $this->validate();
         Raffle::create([
             'name' => $this->name
         ]);
