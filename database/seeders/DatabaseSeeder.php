@@ -15,7 +15,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create(['email' => 'joe@doe.com']);
+        User::factory()->create(['email' => 'joe@doe.com', 'is_admin' => true]);
+        User::factory()->create(['email' => 'jane@doe.com', 'is_admin' => false]);
         $this->call([
             RaffleSeeder::class,
             ApplicantSeeder::class,
