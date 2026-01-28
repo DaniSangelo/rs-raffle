@@ -6,10 +6,10 @@
         </p>
 
         <div class="flex items-center justify-between">
-            <x-ui.button type="button" wire:click="$set('modal', false)" class="bg-gray-300">
+            <x-ui.button secondary type="button" wire:click="$set('modal', false)">
                 No... I'm ok!
             </x-ui.button>
-            <x-ui.button type="button" wire:click="handle" wire:loading.attr="disabled" wire:target="handle">
+            <x-ui.button danger type="button" wire:click="handle" wire:loading.attr="disabled" wire:target="handle">
                 Yes, please!!!
             </x-ui.button>
         </div>
