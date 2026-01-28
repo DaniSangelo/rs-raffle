@@ -1,6 +1,7 @@
 <div class="space-y-4">
     <x-ui.h1 class="flex justify-between items-center">
         <span>Raffles</span>
+        {{-- raffle::create can be any string. Could be 'potato'. In the livewire class (Create.php), On attribute should have the same string --}}
         <x-ui.button @click="$dispatch('raffle::create')">+ Create</x-ui.button>
     </x-ui.h1>
 

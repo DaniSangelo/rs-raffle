@@ -13,6 +13,6 @@ class RaffleSeeder extends Seeder
      */
     public function run(): void
     {
-        Raffle::factory()->count(2)->create();
+        Raffle::factory()->count(30)->create();
     }
 }
