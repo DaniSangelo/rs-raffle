@@ -5,12 +5,14 @@ namespace App\Livewire\Raffle;
 use App\Models\Raffle;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\On;
 use Livewire\Component;
-use Livewire\Features\SupportPagination\HandlesPagination;
+use Livewire\WithPagination;
 
+#[On('raffle::refresh')]
 class Table extends Component
 {
-    use HandlesPagination;
+    use WithPagination;
 
     public function render()
     {
