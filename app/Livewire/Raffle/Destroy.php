@@ -9,20 +9,18 @@ use Livewire\Component;
 class Destroy extends Component
 {
     public bool $modal = false;
-    public ?int $id = null;
+    public ?Raffle $raffle = null;
 
     #[On('raffle::destroy')]
     public function open(int $id): void
     {
         $this->modal = true;
-        $raffle = Raffle::findOrFail($id);
-        $this->id = $raffle->id;
+        $this->raffle = Raffle::findOrFail($id);
     }
 
     public function handle(): void
     {
-        Raffle::where('id', $this->id)
-            ->delete();
+        $this->raffle->delete();
         $this->dispatch('raffle::refresh');
         $this->reset();
     }
