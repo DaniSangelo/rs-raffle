@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Raffle extends Model
 {
@@ -13,5 +14,10 @@ class Raffle extends Model
     public function applicants()
     {
         return $this->hasMany(Applicant::class);
+    }
+
+    public function winners(): HasMany
+    {
+        return $this->hasMany(Winner::class);
     }
 }
