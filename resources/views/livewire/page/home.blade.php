@@ -1,6 +1,6 @@
-<div class="grid grid-cols-3 gap-4">
+<div class="grid grid-cols-1 m-3 md:grid-cols-3 gap-4">
     @foreach ($this->raffles as $raffle)
-        <x-ui.card href="{{ route('raffle.application', $raffle) }}">
+        <x-ui.card href="{{ route('raffle', $raffle) }}">
             <h1 class="text-lg font-bold mb-4">
                 {{ $raffle->id }} - {{ $raffle->name }}
             </h1>
@@ -9,6 +9,9 @@
                 <p class="text-sm ">
                     {{ $raffle->applicants_count }} participants
                 </p>
+                <p class="text-sm ">
+                    {{ $raffle->winners_count }} winners
+                </p>
 
                 <x-ui.button>
                     Join Now
@@ -16,4 +19,4 @@
             </div>
         </x-ui.card>
     @endforeach
-</div>  
+</div>

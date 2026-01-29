@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Raffle;
 
 use App\Models\Applicant;
 use App\Models\Raffle;
@@ -11,7 +11,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\Computed;
 
-class RaffleApplication extends Component
+class Application extends Component
 {
     public ?string $email = null;
     public bool $success = false;
@@ -37,7 +37,7 @@ class RaffleApplication extends Component
 
     public function render(): View
     {
-        return view('livewire.raffle-application');
+        return view('livewire.raffle.application');
     }
 
     public function rules(): array
@@ -60,34 +60,34 @@ class RaffleApplication extends Component
             ->map(fn($applicant) => preg_replace('/(?<=.{2}).(?=.*@)/u', '*', $applicant->email));
     }
 
-    public function getWinner()
-    {
-        $this->authorize('drawWinner', $this->raffle);
+    // public function getWinner()
+    // {
+    //     $this->authorize('drawWinner', $this->raffle);
 
-        if ($this->raffle->applicants()->count() < 2) {
-            $this->addError('error', 'There must be at least 2 applicants to draw a winner.');
-            return;
-        }
+    //     if ($this->raffle->applicants()->count() < 2) {
+    //         $this->addError('error', 'There must be at least 2 applicants to draw a winner.');
+    //         return;
+    //     }
 
-        $winner = $this->raffle->applicants()
-            ->whereNotIn('id', $this->raffle->winners()->pluck('applicant_id'))
-            ->inRandomOrder()
-            ->first();
+    //     $winner = $this->raffle->applicants()
+    //         ->whereNotIn('id', $this->raffle->winners()->pluck('applicant_id'))
+    //         ->inRandomOrder()
+    //         ->first();
 
-        if (!$winner) {
-            $this->addError('error', 'No more participants available for draw');
-            return;
-        }
+    //     if (!$winner) {
+    //         $this->addError('error', 'No more participants available for draw');
+    //         return;
+    //     }
 
-        $this->winner = $winner->email;
-        $this->raffle->winners()->create([
-            'applicant_id' => $winner->id,
-        ]);
-    }
+    //     $this->winner = $winner->email;
+    //     $this->raffle->winners()->create([
+    //         'applicant_id' => $winner->id,
+    //     ]);
+    // }
 
-    #[Computed]
-    public function winners(): int
-    {
-        return $this->raffle->winners()->count();
-    }
+    // #[Computed]
+    // public function winners(): int
+    // {
+    //     return $this->raffle->winners()->count();
+    // }
 }

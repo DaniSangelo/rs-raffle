@@ -9,7 +9,7 @@
         </x-ui.button>
     @endcan
 
-    <h1 class="text-2xl font-bold text-gray-800 dark:text-gray-100">The winner is:</h1>
+    <h1 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Winner(s):</h1>
     @foreach($this->winners as $winner)
         <p class="mt-2 text-gray-700 dark:text-gray-300">{{ $winner }}</p>
     @endforeach
