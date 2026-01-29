@@ -32,6 +32,7 @@ class RaffleApplication extends Component
             'raffle_id' => $this->raffle->id,
             'email' => $this->email,
         ]);
+        $this->success = true;
     }
 
     public function render(): View
@@ -53,7 +54,9 @@ class RaffleApplication extends Component
     #[Computed]
     public function participants(): Collection
     {
-        return $this->raffle->applicants
+        return $this->raffle
+            ->applicants()
+            ->get()
             ->map(fn($applicant) => preg_replace('/(?<=.{2}).(?=.*@)/u', '*', $applicant->email));
     }
 
@@ -80,5 +83,11 @@ class RaffleApplication extends Component
         $this->raffle->winners()->create([
             'applicant_id' => $winner->id,
         ]);
+    }
+
+    #[Computed]
+    public function winners(): int
+    {
+        return $this->raffle->winners()->count();
     }
 }
