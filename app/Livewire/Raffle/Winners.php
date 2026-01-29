@@ -5,6 +5,7 @@ namespace App\Livewire\Raffle;
 use App\Models\Raffle;
 use Illuminate\Support\Collection;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class Winners extends Component
@@ -12,6 +13,7 @@ class Winners extends Component
     public Raffle $raffle;
     public bool $show = true;
 
+    #[On('winners::refresh')]
     public function render()
     {
         return view('livewire.raffle.winners');
