@@ -11,7 +11,7 @@ class Raffle extends Model
     /** @use HasFactory<\Database\Factories\RaffleFactory> */
     use HasFactory;
 
-    public function applicants()
+    public function applicants(): HasMany
     {
         return $this->hasMany(Applicant::class);
     }

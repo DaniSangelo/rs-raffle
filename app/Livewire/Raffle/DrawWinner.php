@@ -54,6 +54,7 @@ class DrawWinner extends Component
         ]);
         $this->winner = $winner->email;
         $this->dispatch('winners::refresh')->to('raffle.winners');
+        $this->js('confetti.addConfetti()');
     }
 
     public function rulete(): void

@@ -22,8 +22,11 @@ class Winners extends Component
     #[Computed]
     public function winners(): Collection
     {
-        return $this->raffle->winners()
+        /** @var \Illuminate\Database\Eloquent\Builder $query */
+        $query = $this->raffle->winners();
+        return $query
             ->with('applicant')
+            ->latest()
             ->get()
             ->map(fn($winner) => 
                 $this->show
