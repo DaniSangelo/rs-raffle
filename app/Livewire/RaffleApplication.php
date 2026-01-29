@@ -66,7 +66,16 @@ class RaffleApplication extends Component
             return;
         }
 
-        $winner = $this->raffle->applicants()->inRandomOrder()->first();
+        $winner = $this->raffle->applicants()
+            ->whereNotIn('id', $this->raffle->winners()->pluck('applicant_id'))
+            ->inRandomOrder()
+            ->first();
+
+        if (!$winner) {
+            $this->addError('error', 'No more participants available for draw');
+            return;
+        }
+
         $this->winner = $winner->email;
         $this->raffle->winners()->create([
             'applicant_id' => $winner->id,

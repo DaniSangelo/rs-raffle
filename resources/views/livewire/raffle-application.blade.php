@@ -38,5 +38,6 @@
 
     @can('drawWinner', $raffle)
         <x-ui.button  type="button" wire:click="getWinner" class="mt-4">Draw the winner</x-ui.button>
+        <x-ui.error name="error" />
     @endcan
 </div>
