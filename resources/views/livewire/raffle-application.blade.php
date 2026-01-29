@@ -28,8 +28,10 @@
 
     <br/>
 
-    <button wire:click="getWinner" class="px-4 py-2 bg-blue-500 text-white rounded-lg">Draw winner</button>
-    @if ($winner)
+    @can('drawWinner', $raffle)
+        <x-ui.button wire:click="getWinner" primary>Draw winner</x-ui.button>
+        @if ($winner)
         <p>Winner: <span class="font-bold">{{ $winner }}</span></p>
-    @endif
+        @endif
+    @endcan
 </div>

@@ -59,6 +59,7 @@ class RaffleApplication extends Component
 
     public function getWinner()
     {
+        $this->authorize('drawWinner', $this->raffle);
         $this->winner = $this->raffle->applicants()->inRandomOrder()->first()->email;
     }
 }
