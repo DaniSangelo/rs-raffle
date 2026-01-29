@@ -1,0 +1,32 @@
+services:
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: raffle-app
+        container_name: raffle-app
+        restart: unless-stopped
+        working_dir: /var/www/html
+        volumes:
+            - ./:/var/www/html
+            - /var/www/html/node_modules
+        networks:
+            - raffle-network
+
+    nginx:
+        image: nginx:alpine
+        container_name: raffle-nginx
+        restart: unless-stopped
+        ports:
+            - "8000:80"
+        volumes:
+            - ./:/var/www/html
+            - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+        depends_on:
+            - app
+        networks:
+            - raffle-network
+
+networks:
+    raffle-network:
+        driver: bridge

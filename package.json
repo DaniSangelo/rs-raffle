@@ -15,6 +15,7 @@
         "vite": "^7.0.7"
     },
     "dependencies": {
+        "@rollup/rollup-linux-x64-gnu": "^4.57.0",
         "js-confetti": "^0.13.1"
     }
 }
