@@ -19,9 +19,9 @@ class RaffleApplication extends Component
     public ?string $winner = null;
 
     // In a Livewire component, mount is the first method to be called when the component is initialized. It is simillar to __construct
-    public function mount(): void
+    public function mount(Raffle $raffle): void
     {
-        $this->raffle = Raffle::inRandomOrder()->first();
+        $this->raffle = $raffle;
     }
 
     public function save(): void
